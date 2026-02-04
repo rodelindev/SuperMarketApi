@@ -1,0 +1,35 @@
+package com.rodelindev.SuperMarketApi.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProduct;
+
+    @ManyToOne //FK
+    @JoinColumn(name = "id_category", nullable = false, foreignKey = @ForeignKey(name = "fk_product_category"))
+    private Category category;
+
+    @Column(nullable = false, length = 50)
+    private String name;
+
+    @Column(nullable = false, columnDefinition = "decimal(6,2)") // 9999.99
+    private double price;
+
+    @Column(nullable = false, length = 150)
+    private String description;
+
+    @Column(nullable = false)
+    private boolean enabled;
+}

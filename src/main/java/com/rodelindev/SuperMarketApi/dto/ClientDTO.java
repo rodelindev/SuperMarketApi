@@ -1,0 +1,39 @@
+package com.rodelindev.SuperMarketApi.dto;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ClientDTO {
+
+    private Integer idClient;
+
+    @NotNull
+    private String firstNameClient;
+
+    @NotNull
+    private String lastNameClient;
+
+    @NotNull
+    private String countryClient;
+
+    @NotNull
+    private String cardId;
+
+    @NotNull
+    private String phoneNumberClient;
+
+    @NotNull
+    @Email
+    private String emailClient;
+
+    @NotNull
+    private String addressClient;
+}

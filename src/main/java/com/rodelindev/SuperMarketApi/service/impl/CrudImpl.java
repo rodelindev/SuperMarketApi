@@ -4,6 +4,7 @@ import com.rodelindev.SuperMarketApi.exception.ModelNotFoundException;
 import com.rodelindev.SuperMarketApi.repository.IGenericRepository;
 import com.rodelindev.SuperMarketApi.service.ICrud;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 public abstract class CrudImpl<T, ID> implements ICrud<T, ID> {
@@ -22,6 +23,12 @@ public abstract class CrudImpl<T, ID> implements ICrud<T, ID> {
 
     @Override
     public T update(ID id, T t) throws Exception {
+        String className = t.getClass().getSimpleName();
+
+        String methodName = "setId" + className;
+        Method setIdMethod = t.getClass().getMethod(methodName, id.getClass());
+        setIdMethod.invoke(t, id);
+
         getRepo().findById(id)
                 .orElseThrow(() -> new ModelNotFoundException("ID NOT FOUND " + id));
         return getRepo().save(t);

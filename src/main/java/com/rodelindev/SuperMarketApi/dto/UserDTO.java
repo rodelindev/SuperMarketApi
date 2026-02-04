@@ -17,17 +17,14 @@ public class UserDTO {
     private Integer idUser;
 
     @NotNull
-    //@JsonIncludeProperties(value = {"idRole"})
     private RoleDTO role;
 
     @NotNull
     @JsonProperty(value = "user_name")
     private String username;
 
-    //@JsonIgnore
     @NotNull
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String password;
 
     @NotNull

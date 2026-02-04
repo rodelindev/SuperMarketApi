@@ -40,6 +40,6 @@ public class SaleDTO {
     private Boolean enabled;
 
     @NotNull
-    @JsonManagedReference // Para manejar la referencia bidireccional en JSON
+    @JsonManagedReference
     private List<SaleDetailDTO> details;
 }

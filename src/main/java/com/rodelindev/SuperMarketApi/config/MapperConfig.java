@@ -18,11 +18,11 @@ public class MapperConfig {
     public ModelMapper categoryMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
-        //LECTURA
+        //Read
         modelMapper.createTypeMap(Category.class, CategoryDTO.class)
                 .addMapping(Category::getName, CategoryDTO::setNameofCategory);
 
-        //ESCRITURA
+        //Write
         modelMapper.createTypeMap(CategoryDTO.class, Category.class)
                 .addMapping(CategoryDTO::getNameofCategory, Category::setName);
 

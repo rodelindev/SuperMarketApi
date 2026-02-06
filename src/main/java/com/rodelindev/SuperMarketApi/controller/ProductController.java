@@ -24,7 +24,10 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductDTO>> findAll() throws Exception {
-        List<ProductDTO> list = service.findAll().stream().map(this::convertToDTO).toList();
+        List<ProductDTO> list = service.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
 
         return ResponseEntity.ok(list);
     }

@@ -24,7 +24,10 @@ public class RoleController {
 
     @GetMapping
     public ResponseEntity<List<RoleDTO>> findAll() throws Exception {
-        List<RoleDTO> list = service.findAll().stream().map(this::convertToDTO).toList();
+        List<RoleDTO> list = service.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
 
         return ResponseEntity.ok(list);
     }

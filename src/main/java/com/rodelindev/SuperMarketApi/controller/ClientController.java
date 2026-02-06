@@ -24,7 +24,10 @@ public class ClientController {
 
     @GetMapping
     public ResponseEntity<List<ClientDTO>> findAll() throws Exception {
-        List<ClientDTO> list = service.findAll().stream().map(this::convertToDTO).toList();
+        List<ClientDTO> list = service.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
 
         return ResponseEntity.ok(list);
     }

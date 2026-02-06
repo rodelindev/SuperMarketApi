@@ -24,7 +24,11 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAll() throws Exception {
-        List<UserDTO> list = service.findAll().stream().map(this::convertToDTO).toList();
+        List<UserDTO> list = service.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
+
         return ResponseEntity.ok(list);
     }
 

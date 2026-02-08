@@ -15,10 +15,6 @@ spring:
     username: ${DB_USER_NAME}
     password: ${DB_PASSWORD}
 
-  session:
-    jdbc:
-      initialize-schema: always
-
   threads:
     virtual:
       enable: true

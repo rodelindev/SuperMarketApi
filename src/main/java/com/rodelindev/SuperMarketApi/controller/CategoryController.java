@@ -7,8 +7,11 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +25,7 @@ public class CategoryController {
     @Qualifier("categoryMapper")
     private final ModelMapper modelMapper;
 
+    @PreAuthorize("@authService.hasAccess()")
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll() throws Exception {
         List<CategoryDTO> list = service.findAll()
@@ -30,6 +34,17 @@ public class CategoryController {
                 .toList();
 
         return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<PagedModel<CategoryDTO>> findPage(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        var pageResult = service.findPage(PageRequest.of(page, size)).map(this::convertToDTO);
+        var pagedModel = new PagedModel<>(pageResult);
+
+        return ResponseEntity.ok(pagedModel);
     }
 
     @GetMapping("/{id}")

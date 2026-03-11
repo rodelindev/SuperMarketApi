@@ -28,7 +28,7 @@ git clone https://github.com/rodelindev/SuperMarketApi
 ### 2. Entrar al directorio del proyecto
 
 ```bash
-cd supermarket-api
+cd SuperMarketApi
 ```
 
 ### 3. Ejecutar la aplicación

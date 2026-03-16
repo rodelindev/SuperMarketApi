@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,17 @@ public class ProductController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<PagedModel<ProductDTO>> findPage(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        var pageResult = service.findPage(PageRequest.of(page, size)).map(this::convertToDTO);
+        var pagedModel = new PagedModel<>(pageResult);
+
+        return ResponseEntity.ok(pagedModel);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Integer id) throws Exception {
         Product obj = service.findById(id);
@@ -47,7 +60,10 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> update(@Valid @PathVariable Integer id, @RequestBody ProductDTO dto) throws Exception {
+    public ResponseEntity<ProductDTO> update(
+            @Valid @PathVariable Integer id,
+            @RequestBody ProductDTO dto
+    ) throws Exception {
         //dto.setIdProduct(id);
         Product obj = service.update(id, convertToEntity(dto));
 

@@ -68,5 +68,4 @@ public class ClientController {
     private Client convertToEntity(ClientDTO dto) {
         return modelMapper.map(dto, Client.class);
     }
-
 }

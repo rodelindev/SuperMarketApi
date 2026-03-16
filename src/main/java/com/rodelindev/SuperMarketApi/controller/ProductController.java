@@ -64,7 +64,6 @@ public class ProductController {
             @Valid @PathVariable Integer id,
             @RequestBody ProductDTO dto
     ) throws Exception {
-        //dto.setIdProduct(id);
         Product obj = service.update(id, convertToEntity(dto));
 
         return ResponseEntity.ok(convertToDTO(obj));
@@ -84,5 +83,4 @@ public class ProductController {
     private Product convertToEntity(ProductDTO dto) {
         return modelMapper.map(dto, Product.class);
     }
-
 }

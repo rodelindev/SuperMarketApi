@@ -68,5 +68,4 @@ public class ProviderController {
     private Provider convertToEntity(ProviderDTO dto) {
         return modelMapper.map(dto, Provider.class);
     }
-
 }

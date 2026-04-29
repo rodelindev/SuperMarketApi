@@ -19,5 +19,8 @@ spring:
     virtual:
       enable: true
 
+  profile:
+    active: dev
+
 server:
   port: 8095

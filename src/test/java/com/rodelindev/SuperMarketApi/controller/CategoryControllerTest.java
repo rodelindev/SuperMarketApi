@@ -150,7 +150,5 @@ public class CategoryControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(result -> assertInstanceOf(ModelNotFoundException.class, result.getResolvedException()));
     }
-
-
 }
 

@@ -6,4 +6,4 @@ COPY ${JAR_FILE} app_supermarketapi.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "supermarketapi.jar"]
+ENTRYPOINT ["java", "-jar", "app_supermarketapi.jar"]

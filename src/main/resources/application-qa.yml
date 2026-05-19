@@ -19,5 +19,8 @@ spring:
     virtual:
       enabled: true
 
+jwt:
+  secret: ${JWT_SECRET}
+
 server:
   port: 8095

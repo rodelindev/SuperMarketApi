@@ -24,5 +24,3 @@ jwt:
 
 server:
   port: 8080
-
-#${DB_URL}

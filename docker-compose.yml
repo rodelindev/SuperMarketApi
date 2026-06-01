@@ -21,7 +21,7 @@ services:
     build: .
     restart: unless-stopped
     environment:
-      DB_URL: jdbc:postgresql://postgres-db:5432/${DB_NAME}
+      DB_URL: JDBC:postgresql://postgres-db:5432/${DB_NAME}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
